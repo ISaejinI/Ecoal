@@ -1,7 +1,7 @@
 import styles from './login.module.css'
 import { useState } from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Login(){
 
@@ -20,7 +20,7 @@ function Login(){
             var connect = response.data
             console.log(response.data)
 
-            return <Redirect to="/" />
+            // useNavigate('/')
             
         } catch (error) {
             var nope = error
@@ -54,5 +54,6 @@ function Login(){
         </section>
     )
 }
+
 
 export default Login
