@@ -53,16 +53,13 @@ function AddArticleForm() {
     />
 </label>
             <label className={styles.label}>
-                Tag:
-                <input type="text" name="tags" onChange={handlechange}></input>
+                <input type="text" name="tags" placeholder="#" onChange={handlechange}></input>
             </label>
             <label className={styles.label}>
-                Add Thumbnail:
-                <input type="text" name="thumbnailURL" value={formData.thumbnailURL} onChange={handlechange}></input>
+                <input type="text" name="thumbnailURL" placeholder="Enter Thumbnail" value={formData.thumbnailURL} onChange={handlechange}></input>
             </label>
             <label className={styles.label}>
-                Add Media:
-                <input type="text" name="mediaURL" value={formData.mediaURL} onChange={handlechange}></input>
+                <input type="text" name="mediaURL" placeholder="Enter Image URL" value={formData.mediaURL} onChange={handlechange}></input>
             </label>
             <label className={styles.button}>
                 <input type="submit" onClick={""}></input>
