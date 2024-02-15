@@ -8,6 +8,7 @@ function AddArticleForm() {
     const config = {
         headers : {"Authorization" : `${localStorage.getItem("token_type")} ${localStorage.getItem("token")}`}
     }
+    
 
     function handlechange(e) {
         setFormData({ ...formData, [e.target.name]: e.target.value })
