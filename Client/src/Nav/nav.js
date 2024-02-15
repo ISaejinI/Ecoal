@@ -1,20 +1,27 @@
 import 'boxicons'
 import { Route, Link, Routes } from "react-router-dom"
+import styles from './nav.module.css';
+
+
 
 export function Nav (props) {
     return (
         <>
-            <nav>
-                <Link to="/search"><box-icon name='search-alt' ></box-icon></Link>
-                <Link to="/"><box-icon type='solid' name='home'></box-icon></Link>
-                {if (props.access-token) {
-                    
-                }}
-                <Link to="/login"><box-icon name='user-circle' type='solid' ></box-icon></Link>
+          
+          <nav className={styles.Navbar}>
+          <div className={styles.NavLogo} onClick={() => window.location.href = '/'}>
+        <img src="/Images/Logo.png" alt="Logo" width="100px" height="100px" />
+      </div>
+                {props.accessToken && (
+
+    <nav />
+        )}   
             </nav>
         </>
     )
 }
+
+
 
 
 
