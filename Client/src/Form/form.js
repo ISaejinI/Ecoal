@@ -51,6 +51,7 @@ function AddArticleForm() {
         placeholder="Add Content.."
         onChange={handlechange}
     />
+    
 </label>
             <label className={styles.label}>
                 <input type="text" name="tags" placeholder="#" onChange={handlechange}></input>
