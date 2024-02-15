@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import styles from './form.module.css'
 
 function AddArticleForm() {
     const [formData, setFormData] = useState({ title: "", content: "", tag: "", thumbnailURL: "", mediaURL: "" });
@@ -24,30 +25,47 @@ function AddArticleForm() {
 
     }
     return (
-        <form onSubmit={handlesubmit}>
-            <label>
-                Title :
-                <input type="text" name="title" value={formData.title} onChange={handlechange}></input>
+        <form onSubmit={handlesubmit} className={styles.form}>
+            <label className={styles.label}>
+                <h1>New Article</h1>
             </label>
-            <label>
-                Content :
-                <input type="text" name="content" value={formData.content} onChange={handlechange}></input>
+            <label className={styles.label}>
+                <input type="text" name="title" placeholder="Add Title" value={formData.title} onChange={handlechange}></input>
             </label>
-            <label>
-                Tag :
+
+            <label className={styles.label}>
+    <textarea
+        style={{
+            width: "380px",
+            height: "150px",
+            maxWidth: "380px",
+            minWidth: "380px",
+            minHeight: "100px",
+            maxHeight: "200px",
+            border: "0.5px solid black",
+            borderRadius: "5px 5px 5px 5px"
+        }}
+        className={`${styles.commentBox} ${styles.label} ${styles.draggable}`}
+        name="content"
+        value={formData.content}
+        placeholder="Add Content.."
+        onChange={handlechange}
+    />
+</label>
+            <label className={styles.label}>
+                Tag:
                 <input type="text" name="tags" onChange={handlechange}></input>
             </label>
-            <label>
-                ThumbnailURL :
+            <label className={styles.label}>
+                Add Thumbnail:
                 <input type="text" name="thumbnailURL" value={formData.thumbnailURL} onChange={handlechange}></input>
             </label>
-            <label>
-                mediaURL :
+            <label className={styles.label}>
+                Add Media:
                 <input type="text" name="mediaURL" value={formData.mediaURL} onChange={handlechange}></input>
             </label>
-            <label>
-                Submit :
-                <input type="submit"></input>
+            <label className={styles.button}>
+                <input type="submit" onClick={""}></input>
             </label>
         </form>
     )
