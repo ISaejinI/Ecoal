@@ -61,9 +61,9 @@ function AddArticleForm() {
             <label className={styles.label}>
                 <input type="text" name="mediaURL" placeholder="Enter Image URL" value={formData.mediaURL} onChange={handlechange}></input>
             </label>
-            <label className={styles.button}>
-                <input type="submit" onClick={""}></input>
-            </label>
+            <label className={styles.label}>
+        <input type="submit" className={styles.button} onClick={""} />
+    </label>
         </form>
     )
 }
