@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-
 function ThisArticle() {
     let params = useParams()
     const [article, setArticle] = useState({id:-1,title:"",thumbnailURL:"",content:""})
