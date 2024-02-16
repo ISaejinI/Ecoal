@@ -1,10 +1,19 @@
 import styles from './credits.module.css'
+import {HeaderL} from '../HeaderL/headerL'
 
 function Credits(){
-        //
+        
     return(
         <section>
-            Welcome to YumYum Credits
+            <HeaderL/>
+            YumYum is a web newspaper created by :
+            <ul>
+                <li>Meghan</li>
+                <li>Kelly</li>
+                <li>Lou-Anne</li>
+                <li>Ethan</li>
+                <li>Killian</li>
+            </ul>
         </section>
     )
 }

@@ -1,4 +1,5 @@
 import styles from './footer.module.css'
+import { Link } from "react-router-dom"
 
 export function Footer() {
     return (
@@ -10,6 +11,7 @@ export function Footer() {
                     <box-icon name='instagram' type='logo' ></box-icon>
                     <box-icon name='pinterest' type='logo' ></box-icon>
                 </div>
+                <Link to="/credits">Credits</Link>
             </div>
         </>
     )
