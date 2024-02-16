@@ -14,7 +14,7 @@ import './App.css';
 import { Nav } from './Nav/nav';
 import { useState } from 'react';
 import axios from 'axios';
-import { HeaderL } from './HeaderL/headerL';
+import HeaderL from './HeaderL/headerL';
 import Register from './Register/register'
 import { useEffect } from 'react';
 import Update from './Update/update';
