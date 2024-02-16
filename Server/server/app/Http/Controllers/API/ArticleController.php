@@ -20,6 +20,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::all();
+        $articles->load("tags");
         return response()->json($articles);
     }
 
@@ -30,7 +31,6 @@ class ArticleController extends Controller
     {
         $request->validate([
             "title" => "required",
-            "lead" => "required",
             "content" => "required",
             "thumbnailURL" => "required",
             "mediaURL" => "required",
@@ -39,7 +39,6 @@ class ArticleController extends Controller
 
         $article = new Article();
         $article->title = $request->input('title');
-        $article->lead = $request->input('lead');
         $article->content = $request->input('content');
         $article->thumbnailURL = $request->input('thumbnailURL');
         $article->mediaURL = $request->input('mediaURL');
@@ -54,6 +53,10 @@ class ArticleController extends Controller
 
         if($mediaType == "mp4"){
             $article->mediaType = "video";
+        }
+
+        if($mediaType == "mp3" || $mediaType == "mov" || $mediaType == "wav"){
+            $article->mediaType = "audio";
         }
 
         // if($request->file("mediaURL")->isValid()) {
@@ -77,6 +80,7 @@ class ArticleController extends Controller
                 $article->tags()->attach($tag->id);
             }
         }
+        return response()->json($article);
 }
 
     /**
@@ -93,7 +97,52 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $request->validate([
+            "title" => "required",
+            "content" => "required",
+            "thumbnailURL" => "required",
+            "mediaURL" => "required",
+            "tags"=>"required"
+        ]);
+        
+        $article->tags()->detach();
+
+        $article->title = $request->input('title');
+        $article->content = $request->input('content');
+        $article->thumbnailURL = $request->input('thumbnailURL');
+        $article->mediaURL = $request->input('mediaURL');
+        $article->leadStory = 0;
+        $article->user_id = auth()->user()->id;
+        $tags = explode(' ', $request->input('tags'));
+        $mediaType = pathinfo($request->input("mediaURL"), PATHINFO_EXTENSION);
+
+        if($mediaType == "jpg" || $mediaType == "png"){
+            $article->mediaType = "image";
+        }
+
+        if($mediaType == "mp4"){
+            $article->mediaType = "video";
+        }
+
+        if($mediaType == "mp3" || $mediaType == "mov" || $mediaType == "wav"){
+            $article->mediaType = "audio";
+        }
+
+        $article->save();
+
+        foreach($tags as $t){
+            $select = Tag::whereRaw('LOWER(name) = ?', strtolower($t))->first();
+            if($select){
+                $article->tags()->attach($select->id);
+            }
+            else{
+                $tag = new Tag();
+                $tag->name = $t;
+                $tag->save();
+                $article->tags()->attach($tag->id);
+            }
+        }
+        return response()->json($article);
     }
 
     /**
@@ -101,6 +150,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->tags()->detach();
+        $article->delete();
+        return response()->noContent();
     }
 }
