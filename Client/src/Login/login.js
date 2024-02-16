@@ -3,7 +3,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { HeaderL } from '../HeaderL/headerL';
+import HeaderL from '../HeaderL/headerL';
 
 
 function Login(props) {

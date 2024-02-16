@@ -2,7 +2,7 @@ import styles from '../Login/login.module.css'
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { HeaderL } from '../HeaderL/headerL';
+import HeaderL from '../HeaderL/headerL';
 
 
 function Register(props) {
