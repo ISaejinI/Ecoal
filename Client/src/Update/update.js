@@ -1,12 +1,16 @@
 import styles from '../Form/form.module.css';
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { HeaderT } from "../HeaderT/headerT"
 
-function Update() {
 
+
+function Update(props) {
+    
     let params = useParams()
+
+    const navigate = useNavigate();
     const [article, setArticle] = useState({})
 
     async function getArticle() {  // The function is asynchronous
@@ -40,12 +44,17 @@ function Update() {
         try {
             const response = await axios.patch(`http://127.0.0.1:8000/api/articles/${params.id}`, formData, config);
             console.log("Article updated:", response.data);
+            navigate(`/articles/${params.id}`)
         } catch (error) {
             console.error("Error updating article:", error);
             console.log(formData)
         }
 
 
+    }
+
+    if(props.user_id != article.user_id){
+        navigate(`/`)
     }
     return (
         <>
